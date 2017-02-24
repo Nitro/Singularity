@@ -40,6 +40,8 @@ public class SingularityConfiguration extends Configuration {
 
   private long checkDeploysEverySeconds = 5;
 
+  private long checkAutoSpreadAllSlavesEverySeconds = 30;
+
   private long checkNewTasksEverySeconds = 5;
 
   private long checkExpiringUserActionEveryMillis = TimeUnit.SECONDS.toMillis(45);
@@ -326,6 +328,10 @@ public class SingularityConfiguration extends Configuration {
 
   public long getCheckDeploysEverySeconds() {
     return checkDeploysEverySeconds;
+  }
+
+  public long getCheckAutoSpreadAllSlavesEverySeconds() {
+    return checkAutoSpreadAllSlavesEverySeconds;
   }
 
   public long getCheckNewTasksEverySeconds() {
