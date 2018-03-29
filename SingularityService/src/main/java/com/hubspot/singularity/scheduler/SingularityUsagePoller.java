@@ -369,8 +369,8 @@ public class SingularityUsagePoller extends SingularityLeaderOnlyPoller {
 
   private SingularityTaskUsage getUsage(MesosTaskMonitorObject taskUsage) {
     double cpuSeconds = taskUsage.getStatistics().getCpusSystemTimeSecs() + taskUsage.getStatistics().getCpusUserTimeSecs();
-
-    return new SingularityTaskUsage(taskUsage.getStatistics().getMemTotalBytes(), taskUsage.getStatistics().getTimestampSeconds(), cpuSeconds, taskUsage.getStatistics().getDiskUsedBytes());
+    long memory = taskUsage.getStatistics().getMemTotalBytes() > 0 ? taskUsage.getStatistics().getMemTotalBytes() : taskUsage.getStatistics().getMemLimitBytes();
+    return new SingularityTaskUsage(memory, taskUsage.getStatistics().getTimestampSeconds(), cpuSeconds, taskUsage.getStatistics().getDiskUsedBytes());
   }
 
   private boolean isLongRunning(SingularityTaskId task) {
